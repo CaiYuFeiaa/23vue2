@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo5</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style type="text/css">
+        .a{width:100px;height:35px;border:1px solid blue;background-color: white;}
+        .b{width:100px;height:35px;border:1px solid white;background-color: blue;}
+    </style>
+</head>
+<body>
+<div id="demo5">
+    <my-button></my-button>
+</div>
+<script>
+    var MyButton = {
+        template:`
+            <input type="button" ref="cc" value="haha" @click="txt()" @mouseenter="me()" @mouseleave="ml()" :class="e==0?c:d">
+        `,
+        data() {
+            return {
+                c:'a',
+                d:'b',
+                e:0
+            }
+        },
+        methods:{
+            txt(){
+                alert(this.$refs.cc.value)
+            },
+            me(){
+                this.e=1
+            },
+            ml(){
+                this.e=0
+            }
+        }
+    }
+
+    new Vue({
+        el:'#demo5',
+        components:{MyButton}
+    })
+</script>
+</body>
+</html>

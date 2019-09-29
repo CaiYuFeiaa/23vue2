@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3-2</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style type="text/css">
+        li{padding: 5px;}
+        #d32{width:400px;margin:0 auto}
+        .a{width:70px;color: white;background-color: darkslateblue;display: inline-block}
+        .b{width:70px;color: blue;background-color: white;display: inline-block}
+    </style>
+</head>
+<body>
+<div id="d32">
+    <demo :info="jd"></demo>
+    <demo :info="tb"></demo>
+</div>
+
+<script>
+    var Demo = {
+        template:`
+        <div>
+         <div>
+                <ul style="height:100%;">
+                    <li v-for="(item,index) in info" :key="index" :class="put[index]==1?c:d" @click="clk(index)">
+                    {{item.option}}
+                  </li>
+               </ul>
+           </div>
+
+           <div>
+             <ul v-for="(item,index) in info" :key="index" v-show="put[index]==1">
+                  <li v-for="(childitem,index) in item.detailed">
+                        {{childitem}}
+                    </li>
+             </ul>
+         </div>
+        </div>`,
+        data(){
+         return{
+             c:'a',
+             d:'b',
+             put:[1,0,0,0]
+         }
+        },
+        methods:{
+        clk(index){
+            this.put=[0,0,0,0]
+            this.put[index]=1;
+            console.log(this.put)
+        }
+    },
+        props:['info']
+
+    }
+
+    new Vue({
+        el:"#d32",
+        data(){
+            return{
+                jd:[{option:'京东超市',detailed:{item1:'食品饮料',item2:'粮食副食',item3:'护肤美容',item4:'家居清洁'}},
+                    {option:'数码电器',detailed:{item1:'手机',item2:'电脑',item3:'电视',item4:'相机'}},
+                    {option:'服饰美妆',detailed:{item1:'衣服',item2:'鞋子',item3:'帽子',item4:'裤子'}},
+                    {option:'京东生鲜',detailed:{item1:'水果',item2:'海鲜',item3:'肉类',item4:'蔬菜'}}]
+                ,
+                tb:[{option:'天猫超市',detailed:{item1:'食品饮料',item2:'粮食副食',item3:'护肤美容',item4:'家居清洁'}},
+                    {option:'数码电器',detailed:{item1:'手机',item2:'电脑',item3:'电视',item4:'相机'}},
+                    {option:'服饰美妆',detailed:{item1:'衣服',item2:'鞋子',item3:'帽子',item4:'裤子'}},
+                    {option:'盒马生鲜',detailed:{item1:'水果',item2:'海鲜',item3:'肉类',item4:'蔬菜'}}]
+            }
+        },
+        components:{Demo}
+    })
+</script>
+</body>
+</html>

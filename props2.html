@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>props</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="p1">
+    <mipt v-for="(item,index) in list" :key="index" :iptv="item"></mipt>
+</div>
+
+<script>
+    var mipt={
+        template: `<div>
+                        <button @click="add()">+</button>
+                        <input type="text" v-model="count">
+                        <button @click="reduce()">-</button>
+                   </div>`,
+        props:['iptv'],
+        data(){
+            return{
+                count:this.iptv
+            }
+        },
+        methods:{
+            add(){
+                this.count++
+            },
+            reduce(){
+
+            }
+        }
+    }
+    new Vue({
+        el:'#p1',
+        data() {
+            return{
+                list:['1','2','3','4']
+            }
+        },
+        components:{
+            'mipt':mipt
+        }
+    })
+</script>
+</body>
+</html>

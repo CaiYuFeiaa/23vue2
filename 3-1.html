@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3-1</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="d31">
+    <car></car>
+</div>
+<script>
+    var Car={
+        template:`
+            <div>
+                <input type="button" value="+" @click="add()">
+                <input type="text" v-model="count" @change="p()">
+                <input type="button" value="-" @click="reduce()">
+            </div>
+        `,
+        data(){
+            return{
+                count:1
+            }
+        }
+        ,
+        methods:{
+            add(){
+                this.count++
+            },
+            reduce(){
+                if(this.count<=0)
+                    alert("物品已清空")
+                else
+                    this.count--
+            },
+            p(){
+                    var numReg = /^[0-9]+$/
+                    var bo=numReg.test(this.count)
+                    console.log(bo)
+                    if(this.count<0 || !bo){
+                        alert('输入数据不合法')
+                        this.count=1
+                }
+            }
+        }
+    }
+
+    new Vue({
+        el:'#d31',
+        components:{Car}
+    })
+</script>
+</body>
+</html>

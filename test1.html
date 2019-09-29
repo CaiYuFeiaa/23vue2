@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="d1">
+        <my-button></my-button>
+    </div>
+
+<script>
+    Vue.component('my-button',{
+        template:`<div><button @click="handleClick()">{{count}}</button></div>`,
+        data(){
+            return {
+                count:0
+            }
+        },
+        methods:{
+            handleClick(){
+                this.count++;
+            }
+        }
+    })
+
+    new Vue({
+        el:'#d1'
+    })
+</script>
+</body>
+</html>
